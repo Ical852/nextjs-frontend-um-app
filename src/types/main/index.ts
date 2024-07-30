@@ -14,6 +14,7 @@ export interface FailedResponse {
 
 export interface UserData {
   id: number;
+  token: string;
   firstName: string;
   lastName: string;
   email: string;

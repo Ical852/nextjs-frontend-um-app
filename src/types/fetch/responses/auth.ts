@@ -1,7 +1,8 @@
 import { UserData, Response } from "@/types/main";
 
 export interface LoginResponse extends Response {
-  data: string;
+  data: UserData;
+  token: string;
 }
 
 export interface RegisterResponse extends Response {
