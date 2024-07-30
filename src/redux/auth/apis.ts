@@ -11,6 +11,7 @@ import {
   UpdateRequest,
   UpdateResponse,
 } from "@/types";
+import store from "../store";
 
 export const authApis = {
   login: async (
@@ -26,24 +27,27 @@ export const authApis = {
     return response.data;
   },
   fetch: async (): Promise<FetchResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.get(BASE_URL + "/admin/fetch", {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },
   update: async (
     payload: UpdateRequest
   ): Promise<UpdateResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.post(BASE_URL + "/admin/update", payload, {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },
   logout: async (): Promise<LogoutResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.post(
       BASE_URL + "/admin/logout",
       {},
-      { ...getHeader() }
+      { ...getHeader(token) }
     );
     return response.data;
   },

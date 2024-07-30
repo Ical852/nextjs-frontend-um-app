@@ -12,43 +12,49 @@ import {
   UpdateCategoryRequest,
   UpdateCategoryResponse,
 } from "@/types";
+import store from "../store";
 
 export const categoryApis = {
   getAllCategories: async (): Promise<GetAllCategoryResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.get(BASE_URL + "/category", {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },
   getCategoryDetail: async (
     payload: GetCategoryDetailRequest
   ): Promise<GetCategoryDetailResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.get(BASE_URL + `/category/${payload.id}`, {
-      ...getHeader()
+      ...getHeader(token)
     });
     return response.data;
   },
   createCategory: async (
     payload: CreateCategoryRequest
   ): Promise<CreateCategoryResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.post(BASE_URL + `/category`, payload, {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },
   updateCategory: async (
     payload: UpdateCategoryRequest
   ): Promise<UpdateCategoryResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.put(BASE_URL + `/category/${payload.id}`, {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },
   deleteCategory: async (
     payload: DeleteCategoryRequest
   ): Promise<DeleteCategoryResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.delete(BASE_URL + `/category/${payload.id}`, {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },

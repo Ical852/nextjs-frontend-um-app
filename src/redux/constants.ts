@@ -11,9 +11,7 @@ export const RESPONSE_STATUS = {
   ERROR: 500,
   FAILED: 501,
 };
-const state = store.getState();
-const token = state.auth?.session?.token;
-export const getHeader = () => {
+export const getHeader = (token: string) => {
   return {
     headers: {
       Authorization: `Bearer ${token}`,

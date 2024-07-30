@@ -8,27 +8,31 @@ import {
   UpdateAdminDataRequest,
   UpdateAdminDataResponse,
 } from "@/types";
+import store from "../store";
 
 export const adminApis = {
   getAllAdmins: async (): Promise<GetAllAdminsResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.get(BASE_URL + "/admin", {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },
   updateAdmin: async (
     payload: UpdateAdminDataRequest
   ): Promise<UpdateAdminDataResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.put(BASE_URL + `/admin/${payload.id}`, payload, {
-      ...getHeader()
+      ...getHeader(token)
     });
     return response.data;
   },
   deleteAdmin: async (
     payload: DeleteAdminDataRequest
   ): Promise<DeleteAdminDataResponse | FailedResponse> => {
+    const token = store?.getState()?.auth?.session?.token;
     const response = await axios.delete(BASE_URL + `/admin/${payload.id}`, {
-      ...getHeader(),
+      ...getHeader(token),
     });
     return response.data;
   },
