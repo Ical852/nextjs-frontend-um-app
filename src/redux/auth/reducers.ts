@@ -46,7 +46,6 @@ export const authReducers = (
       loginLoading: false,
       loginError: false,
       loginResponse: {},
-      session: {},
       action: type,
     }),
     // LOGIN
