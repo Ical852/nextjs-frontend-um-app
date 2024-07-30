@@ -1,6 +1,6 @@
 import store from "./store";
 
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "http://localhost:5000/api";
 export const RESPONSE_STATUS = {
   SUCCESS: 200,
   CREATED: 201,
