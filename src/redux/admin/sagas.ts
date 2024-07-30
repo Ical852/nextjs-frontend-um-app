@@ -29,7 +29,9 @@ function* getAllAdminsSaga(): Generator {
       adminApis.getAllAdmins,
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(getAllAdminsSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(getAllAdminsSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -60,7 +62,9 @@ function* updateAdminSaga(action: ReduxActionParams): Generator {
       action.payload as UpdateAdminDataRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(updateAdminSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(updateAdminSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -91,7 +95,9 @@ function* deleteAdminSaga(action: ReduxActionParams): Generator {
       action.payload as DeleteAdminDataRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(deleteAdminSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(deleteAdminSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(

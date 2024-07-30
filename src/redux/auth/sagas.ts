@@ -39,7 +39,9 @@ function* loginSaga(action: ReduxActionParams): Generator {
       action.payload as LoginRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.CREATED:
+        return yield put(loginSuccess(response));
+      case RESPONSE_STATUS.SUCCESS:
         return yield put(loginSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -70,7 +72,9 @@ function* registerSaga(action: ReduxActionParams): Generator {
       action.payload as RegisterRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(registerSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(registerSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -98,7 +102,9 @@ function* fetchSaga(): Generator {
   try {
     const response: FetchResponse = yield call(authApis.fetch);
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(fetchSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(fetchSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -129,7 +135,9 @@ function* updateSaga(action: ReduxActionParams): Generator {
       action.payload as UpdateRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(updateSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(updateSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -157,7 +165,9 @@ function* logoutSaga(): Generator {
   try {
     const response: LogoutResponse = yield call(authApis.logout);
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(logoutSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(logoutSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(

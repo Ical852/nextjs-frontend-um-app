@@ -39,7 +39,9 @@ function* getAllCategoriesSaga(): Generator {
       categoryApis.getAllCategories,
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(getAllCategoriesSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(getAllCategoriesSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -70,7 +72,9 @@ function* getCategoryDetailSaga(action: ReduxActionParams): Generator {
       action.payload as GetCategoryDetailRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(getCategoryDetailSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(getCategoryDetailSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -101,7 +105,9 @@ function* createCategorySaga(action: ReduxActionParams): Generator {
       action.payload as CreateCategoryRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(createCategorySuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(createCategorySuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -132,7 +138,9 @@ function* updateCategorySaga(action: ReduxActionParams): Generator {
       action.payload as UpdateCategoryRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(updateCategorySuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(updateCategorySuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -163,7 +171,9 @@ function* deleteCategorySaga(action: ReduxActionParams): Generator {
       action.payload as DeleteCategoryRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(deleteCategorySuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(deleteCategorySuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(

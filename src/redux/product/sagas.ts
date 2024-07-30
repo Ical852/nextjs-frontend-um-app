@@ -39,7 +39,9 @@ function* getAllProductsSaga(): Generator {
       productApis.getAllProducts,
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(getAllProductsSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(getAllProductsSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -70,7 +72,9 @@ function* getProductDetailSaga(action: ReduxActionParams): Generator {
       action.payload as GetProductDetailRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(getProductDetailSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(getProductDetailSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -101,7 +105,9 @@ function* createProductSaga(action: ReduxActionParams): Generator {
       action.payload as CreateProductRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(createProductSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(createProductSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -132,7 +138,9 @@ function* updateProductSaga(action: ReduxActionParams): Generator {
       action.payload as UpdateProductRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(updateProductSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(updateProductSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -163,7 +171,9 @@ function* deleteProductSaga(action: ReduxActionParams): Generator {
       action.payload as DeleteProductRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(deleteProductSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(deleteProductSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(

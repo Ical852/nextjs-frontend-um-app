@@ -34,7 +34,9 @@ function* getAllTransactionsSaga(): Generator {
       transactionApis.getAllTransactions,
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(getAllTransactionsSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(getAllTransactionsSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -65,7 +67,9 @@ function* getTransactionDetailSaga(action: ReduxActionParams): Generator {
       action.payload as GetDetailTransactionRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(getTransactionDetailSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(getTransactionDetailSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -96,7 +100,9 @@ function* createTransactionSaga(action: ReduxActionParams): Generator {
       action.payload as CreateTransactionRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(createTransactionSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(createTransactionSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
@@ -127,7 +133,9 @@ function* deleteTransactionSaga(action: ReduxActionParams): Generator {
       action.payload as DeleteTransactionRequest
     );
     switch (response.status) {
-      case RESPONSE_STATUS.SUCCESS || RESPONSE_STATUS.CREATED:
+      case RESPONSE_STATUS.SUCCESS:
+        return yield put(deleteTransactionSuccess(response));
+      case RESPONSE_STATUS.CREATED:
         return yield put(deleteTransactionSuccess(response));
       case RESPONSE_STATUS.BAD_REQUEST:
         return yield put(
