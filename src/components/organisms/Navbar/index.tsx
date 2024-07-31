@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { connect } from "react-redux";
-import { AppDispatch, RootState } from "@/redux/store";
-import { logout, logoutReset } from "@/redux/auth/actions";
 import { useRouter } from "next/router";
 import Loading from "react-loading";
+
 import Link from "next/link";
+import { AppDispatch, RootState } from "@/redux/store";
+import { logout, logoutReset } from "@/redux/auth/actions";
 import { useNavbar } from "./useNavbar";
 
 const Navbar = (props: any) => {

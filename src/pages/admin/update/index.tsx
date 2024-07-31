@@ -14,7 +14,7 @@ const UpdateAdminPage: React.FC<UpdateAdminPageProps> = (props) => {
     <>
       <Navbar />
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <span className="mb-5 text-black font-bold">Admin Table</span>
+        <span className="mb-5 text-black font-bold">Update Admin</span>
 
         <form className="space-y-6" action="#" method="POST">
           <TextInput

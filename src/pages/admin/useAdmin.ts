@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import { AdminPageProps, UserData } from "@/types";
 import { RESPONSE_STATUS } from "@/redux/constants";
@@ -19,6 +19,14 @@ export const useAdmin = (props: AdminPageProps) => {
     session,
   } = props;
   const router = useRouter();
+
+  const adminData = useMemo(() => {
+    const res = getAllAdminsResponse;
+    if (res?.data) {
+      return res?.data?.filter((data: UserData) => data.id !== session.id)
+    }
+    return [];
+  }, [getAllAdminsResponse, session]);
 
   const onEdit = useCallback((admin: UserData) => {
     router.push({
@@ -57,7 +65,7 @@ export const useAdmin = (props: AdminPageProps) => {
 
   return {
     loading: getAllAdminsLoading || deleteAdminLoading,
-    admins: getAllAdminsResponse?.data || [],
+    admins: adminData,
     onEdit,
     onDelete,
   };

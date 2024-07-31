@@ -55,7 +55,7 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
             {stock}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+          <td className="px-6 py-4 whitespace-nowrap text-start text-sm font-medium">
             <button
               onClick={() => product.onEdit(prd)}
               type="button"
@@ -87,7 +87,7 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
               onClick={product.onCreate}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-4 rounded"
             >
-              Add Product
+              Create Product
             </button>
           </div>
           <div className="-m-1.5 overflow-x-auto">
@@ -110,21 +110,27 @@ const ProductPage: React.FC<ProductPageProps> = (props) => {
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
                         Image
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
                         Category
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
                         Stok
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                      >
+                        Action
                       </th>
                     </tr>
                   </thead>

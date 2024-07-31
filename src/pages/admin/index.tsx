@@ -19,7 +19,7 @@ const AdminDashboardPage: React.FC<AdminPageProps> = (props) => {
     if (admin.loading) {
       return (
         <tr>
-          <td colSpan={3} className="relative">
+          <td colSpan={5} className="relative">
             <div className="inset-0 flex items-center justify-center">
               <Loading type="bars" color="blue" height={50} width={50} />
             </div>
@@ -45,7 +45,7 @@ const AdminDashboardPage: React.FC<AdminPageProps> = (props) => {
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
             {gender}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+          <td className="px-6 py-4 whitespace-nowrap text-start text-sm font-medium">
             <button
               onClick={() => admin.onEdit(adm)}
               type="button"
@@ -96,19 +96,19 @@ const AdminDashboardPage: React.FC<AdminPageProps> = (props) => {
                         scope="col"
                         className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
-                        Email
+                        Birth
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
                         Birth
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
-                        Gender
+                        Action
                       </th>
                     </tr>
                   </thead>

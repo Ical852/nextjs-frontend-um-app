@@ -3,6 +3,7 @@ import {
   CreateTransactionResponse,
   DeleteTransactionRequest,
   DeleteTransactionResponse,
+  GetAllProductResponse,
   GetAllTransactionResponse,
   GetDetailTransactionRequest,
   GetDetailTransactionResponse,
@@ -34,6 +35,11 @@ export interface CreateTransactionPageProps {
   createTransactionError: boolean;
   createTransactionResponse: CreateTransactionResponse;
   createTransactionReset: () => void;
+
+  getAllProducts: () => void;
+  getAllProductsLoading: boolean;
+  getAllProductsError: boolean;
+  getAllProductsResponse: GetAllProductResponse;
 
   session: any;
 }
