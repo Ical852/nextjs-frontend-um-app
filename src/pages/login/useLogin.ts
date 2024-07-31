@@ -15,8 +15,8 @@ export const useLogin = (props: LoginPageProps) => {
   const router = useRouter();
 
   const [form, setForm] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -25,11 +25,11 @@ export const useLogin = (props: LoginPageProps) => {
       const value = e.target.value;
       setForm({
         ...form,
-        [props]: value
+        [props]: value,
       });
     },
-    [form],
-  )
+    [form]
+  );
 
   const onSubmit = useCallback(() => {
     setLoading(true);
@@ -39,22 +39,22 @@ export const useLogin = (props: LoginPageProps) => {
   useEffect(() => {
     if (session?.token) {
       setTimeout(() => {
-        router.push('/category');
+        router.push("/admin");
       }, 500);
     } else {
       if (loginError) {
         loginReset();
-        alert('Login Failed');
+        alert("Login Failed");
         setTimeout(() => {
           setLoading(false);
         }, 500);
       }
       if (loginResponse.status === RESPONSE_STATUS.CREATED) {
         loginReset();
-        alert('Login Failed');
+        alert("Login Failed");
         setTimeout(() => {
           setLoading(false);
-          router.push('/category');
+          router.push("/admin");
         }, 500);
       }
     }
@@ -65,6 +65,7 @@ export const useLogin = (props: LoginPageProps) => {
     onChange,
     onSubmit,
     isLoading: (loginLoading || loading) as boolean,
-    disabled: (loginLoading || loading) as boolean || !form.password || !form.email
-  }
-}
+    disabled:
+      ((loginLoading || loading) as boolean) || !form.password || !form.email,
+  };
+};

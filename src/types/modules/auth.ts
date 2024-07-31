@@ -1,4 +1,9 @@
-import { LoginRequest, LoginResponse, RegisterRequest } from "../fetch";
+import {
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  RegisterResponse,
+} from "../fetch";
 
 export interface LoginPageProps {
   login: (payload: LoginRequest) => void;
@@ -13,7 +18,7 @@ export interface RegisterPageProps {
   register: (payload: RegisterRequest) => void;
   registerReset: () => void;
   registerLoading: Boolean;
-  registerResponse: LoginResponse;
+  registerResponse: RegisterResponse;
   registerError: Boolean;
   session: any;
 }
