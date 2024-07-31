@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
-import { UpdateCategoryPageProps } from "@/types";
+import { UpdateAdminPageProps } from "@/types";
 import { RESPONSE_STATUS } from "@/redux/constants";
 
-export const useUpdate = (props: UpdateCategoryPageProps) => {
+export const useUpdate = (props: UpdateAdminPageProps) => {
   const {
-    updateCategory,
-    updateCategoryLoading,
-    updateCategoryError,
-    updateCategoryResponse,
-    updateCategoryReset,
+    updateAdmin,
+    updateAdminLoading,
+    updateAdminError,
+    updateAdminResponse,
+    updateAdminReset,
 
     session,
   } = props;
@@ -18,12 +18,14 @@ export const useUpdate = (props: UpdateCategoryPageProps) => {
 
   const [form, setForm] = useState({
     id: 0,
-    name: "",
-    description: "",
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    gender: "",
   });
 
   const isInvalid = useMemo(() => {
-    return !form.name || !form.description;
+    return !form.firstName || !form.lastName || !form.birthDate || !form.gender;
   }, [form]);
 
   const onChange = useCallback(
@@ -41,7 +43,7 @@ export const useUpdate = (props: UpdateCategoryPageProps) => {
     if (isInvalid) {
       return alert("Fill all of the form");
     }
-    updateCategory(form);
+    updateAdmin(form);
   }, [form, isInvalid]);
 
   useEffect(() => {
@@ -53,24 +55,24 @@ export const useUpdate = (props: UpdateCategoryPageProps) => {
   useEffect(() => {
     if (query.data) {
       const data = JSON.parse(query.data as any);
-      setForm(data.category);
+      setForm(data.admin);
     }
   }, [query]);
 
   useEffect(() => {
-    if (updateCategoryResponse.status === RESPONSE_STATUS.SUCCESS) {
-      updateCategoryReset();
-      alert("Update Category Data Success");
-      router.push("/category");
+    if (updateAdminResponse.status === RESPONSE_STATUS.SUCCESS) {
+      updateAdminReset();
+      alert("Update Admin Data Success");
+      router.push("/admin");
     }
-    if (updateCategoryError) {
-      updateCategoryReset();
-      alert("Update Category Data Failed");
+    if (updateAdminError) {
+      updateAdminReset();
+      alert("Update Admin Data Failed");
     }
-  }, [updateCategoryResponse]);
+  }, [updateAdminResponse]);
 
   return {
-    loading: updateCategoryLoading,
+    loading: updateAdminLoading,
     disabled: isInvalid,
     form,
     onChange,

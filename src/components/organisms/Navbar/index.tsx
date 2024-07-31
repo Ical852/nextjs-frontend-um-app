@@ -1,11 +1,19 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
+import { connect } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { logout, logoutReset } from "@/redux/auth/actions";
+import { useRouter } from "next/router";
+import Loading from "react-loading";
+import Link from "next/link";
+import { useNavbar } from "./useNavbar";
 
-const Navbar = () => {
+const Navbar = (props: any) => {
+  const navbar = useNavbar(props);
+
   const router = useRouter();
   const [show, setShow] = useState(false);
   const toggle = () => setShow(!show);
+
   const routerPath = router.pathname;
   const getClass = useCallback(
     (route: string) => {
@@ -102,6 +110,16 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+          {navbar.loading ? (
+            <Loading width={24} height={24} type="spin" color="white" />
+          ) : (
+            <button
+              onClick={navbar.onLogout}
+              className={getClass("/transaction")}
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
 
@@ -133,4 +151,15 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state: RootState) => ({
+  logoutLoading: state.auth.logoutLoading,
+  logoutResponse: state.auth.logoutResponse,
+  logoutError: state.auth.logoutError,
+});
+
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  logout: () => dispatch(logout()),
+  logoutReset: () => dispatch(logoutReset()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

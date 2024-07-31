@@ -1,7 +1,9 @@
 import {
+  DeleteAdminDataRequest,
   DeleteAdminDataResponse,
   FailedResponse,
   GetAllAdminsResponse,
+  UpdateAdminDataRequest,
   UpdateAdminDataResponse,
 } from "@/types";
 import * as CONST from "./constants";
@@ -29,9 +31,10 @@ export const getAllAdminsReset = () => {
   };
 };
 
-export const updateAdmin = () => {
+export const updateAdmin = (payload: UpdateAdminDataRequest) => {
   return {
     type: CONST.UPDATE_ADMIN,
+    payload,
   };
 };
 export const updateAdminSuccess = (payload: UpdateAdminDataResponse) => {
@@ -52,9 +55,10 @@ export const updateAdminReset = () => {
   };
 };
 
-export const deleteAdmin = () => {
+export const deleteAdmin = (payload: DeleteAdminDataRequest) => {
   return {
     type: CONST.DELETE_ADMIN,
+    payload,
   };
 };
 export const deleteAdminSuccess = (payload: DeleteAdminDataResponse) => {

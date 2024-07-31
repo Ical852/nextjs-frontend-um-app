@@ -22,9 +22,13 @@ export const adminApis = {
     payload: UpdateAdminDataRequest
   ): Promise<UpdateAdminDataResponse | FailedResponse> => {
     const token = store?.getState()?.auth?.session?.token;
-    const response = await axios.put(BASE_URL + `/admin/${payload.id}`, payload, {
-      ...getHeader(token)
-    });
+    const response = await axios.put(
+      BASE_URL + `/admin/${payload.id}`,
+      payload,
+      {
+        ...getHeader(token),
+      }
+    );
     return response.data;
   },
   deleteAdmin: async (

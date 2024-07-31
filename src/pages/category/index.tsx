@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { connect } from "react-redux";
 import Loading from "react-loading";
 import { AppDispatch, RootState } from "@/redux/store";
-import { Navbar } from "@/components";
+
 import {
   CategoryPageProps,
   DeleteCategoryRequest,
@@ -10,11 +10,14 @@ import {
 } from "@/types";
 import {
   deleteCategory,
+  deleteCategoryReset,
   getAllCategories,
   getCategoryDetail,
 } from "@/redux/category/actions";
-import { useCategory } from "./useCategory";
+
+import { Navbar } from "@/components";
 import { Category } from "@/types/fetch/responses/category";
+import { useCategory } from "./useCategory";
 
 const CategoryDashboard: React.FC<CategoryPageProps> = (props) => {
   const cat = useCategory(props);
@@ -45,12 +48,14 @@ const CategoryDashboard: React.FC<CategoryPageProps> = (props) => {
           </td>
           <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
             <button
+              onClick={() => cat.onEdit(category)}
               type="button"
               className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-green-600 hover:text-green-800 focus:outline-none focus:text-green-800 disabled:opacity-50 disabled:pointer-events-none dark:text-green-500 dark:hover:text-green-400 dark:focus:text-green-400"
             >
               Edit
             </button>
             <button
+              onClick={() => cat.onDelete(category)}
               type="button"
               className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 focus:outline-none focus:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400 dark:focus:text-red-400"
             >
@@ -60,7 +65,7 @@ const CategoryDashboard: React.FC<CategoryPageProps> = (props) => {
         </tr>
       );
     });
-  }, [cat.loading, cat.categories]);
+  }, [cat.loading, cat.categories, cat.onEdit, cat.onDelete]);
 
   return (
     <>
@@ -69,7 +74,10 @@ const CategoryDashboard: React.FC<CategoryPageProps> = (props) => {
         <div className="flex flex-col">
           <div className="flex flex-row justify-between items-center w-full my-5">
             <span className="my-5 text-black font-bold">Category Table</span>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-4 rounded">
+            <button
+              onClick={cat.onCreate}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5 px-4 rounded"
+            >
               Add Category
             </button>
           </div>
@@ -132,6 +140,7 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     dispatch(getCategoryDetail(payload)),
   deleteCategory: (payload: DeleteCategoryRequest) =>
     dispatch(deleteCategory(payload)),
+  deleteCategoryReset: () => dispatch(deleteCategoryReset()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryDashboard);

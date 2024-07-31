@@ -27,7 +27,7 @@ export const productApis = {
   ): Promise<GetProductDetailResponse | FailedResponse> => {
     const token = store?.getState()?.auth?.session?.token;
     const response = await axios.get(BASE_URL + `/product/${payload.id}`, {
-      ...getHeader(token)
+      ...getHeader(token),
     });
     return response.data;
   },
@@ -44,9 +44,13 @@ export const productApis = {
     payload: UpdateProductRequest
   ): Promise<UpdateProductResponse | FailedResponse> => {
     const token = store?.getState()?.auth?.session?.token;
-    const response = await axios.put(BASE_URL + `/product/${payload.id}`, {
-      ...getHeader(token),
-    });
+    const response = await axios.put(
+      BASE_URL + `/product/${payload.id}`,
+      payload,
+      {
+        ...getHeader(token),
+      }
+    );
     return response.data;
   },
   deleteProduct: async (

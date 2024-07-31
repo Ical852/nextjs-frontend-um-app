@@ -5,6 +5,6 @@ export interface UpdateAdminDataRequest extends UpdateRequest {
   id: number;
 }
 
-export interface DeleteAdminDataRequest extends Response {
+export interface DeleteAdminDataRequest {
   id: number;
 }

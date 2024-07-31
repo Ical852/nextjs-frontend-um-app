@@ -15,7 +15,9 @@ import {
 import store from "../store";
 
 export const categoryApis = {
-  getAllCategories: async (): Promise<GetAllCategoryResponse | FailedResponse> => {
+  getAllCategories: async (): Promise<
+    GetAllCategoryResponse | FailedResponse
+  > => {
     const token = store?.getState()?.auth?.session?.token;
     const response = await axios.get(BASE_URL + "/category", {
       ...getHeader(token),
@@ -27,7 +29,7 @@ export const categoryApis = {
   ): Promise<GetCategoryDetailResponse | FailedResponse> => {
     const token = store?.getState()?.auth?.session?.token;
     const response = await axios.get(BASE_URL + `/category/${payload.id}`, {
-      ...getHeader(token)
+      ...getHeader(token),
     });
     return response.data;
   },
@@ -44,9 +46,14 @@ export const categoryApis = {
     payload: UpdateCategoryRequest
   ): Promise<UpdateCategoryResponse | FailedResponse> => {
     const token = store?.getState()?.auth?.session?.token;
-    const response = await axios.put(BASE_URL + `/category/${payload.id}`, {
-      ...getHeader(token),
-    });
+
+    const response = await axios.put(
+      BASE_URL + `/category/${payload.id}`,
+      payload,
+      {
+        ...getHeader(token),
+      }
+    );
     return response.data;
   },
   deleteCategory: async (

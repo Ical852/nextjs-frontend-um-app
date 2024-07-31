@@ -3,6 +3,7 @@ import {
   CreateProductResponse,
   DeleteProductRequest,
   DeleteProductResponse,
+  GetAllCategoryResponse,
   GetAllProductResponse,
   GetProductDetailRequest,
   GetProductDetailResponse,
@@ -37,6 +38,11 @@ export interface CreateProductPageProps {
   createProductResponse: CreateProductResponse;
   createProductReset: () => void;
 
+  getAllCategories: () => void;
+  getAllCategoriesLoading: boolean;
+  getAllCategoriesError: boolean;
+  getAllCategoriesResponse: GetAllCategoryResponse;
+
   session: any;
 }
 
@@ -46,6 +52,11 @@ export interface UpdateProductPageProps {
   updateProductError: boolean;
   updateProductResponse: UpdateProductResponse;
   updateProductReset: () => void;
+
+  getAllCategories: () => void;
+  getAllCategoriesLoading: boolean;
+  getAllCategoriesError: boolean;
+  getAllCategoriesResponse: GetAllCategoryResponse;
 
   session: any;
 }
