@@ -19,6 +19,7 @@ const CreateTransactionPage: React.FC<CreateTransactionPageProps> = (props) => {
         <span className="mb-5 text-black font-bold">Create Transaction</span>
 
         <form className="space-y-6" action="#" method="POST">
+          <h5>Select Product</h5>
           <Select
             options={create.options}
             onChange={(e) => create.onSelect(e, 'productId')}
@@ -33,6 +34,7 @@ const CreateTransactionPage: React.FC<CreateTransactionPageProps> = (props) => {
             onChange={(e) => create.onChange(e, "quantity")}
             value={create.form.quantity}
           />
+          <h5>Select Type</h5>
           <Select
             options={create.types}
             onChange={(e) => create.onSelect(e, 'type')}

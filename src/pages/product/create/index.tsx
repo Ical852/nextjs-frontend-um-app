@@ -37,6 +37,7 @@ const CreateProductPage: React.FC<CreateProductPageProps> = (props) => {
             onChange={(e) => create.onChange(e, "imageUrl")}
             value={create.form.imageUrl}
           />
+          <h5>Category</h5>
           <Select
             options={create.options}
             onChange={(e) => create.onSelect(e)}
