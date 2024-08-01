@@ -55,6 +55,9 @@ const TransactionPage: React.FC<TransactionPageProps> = (props) => {
           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
             {product.name}
           </td>
+          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
+            {product.description}
+          </td>
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
             <img src={product.imageUrl} className="w-20 h-20" />
           </td>
@@ -64,7 +67,7 @@ const TransactionPage: React.FC<TransactionPageProps> = (props) => {
           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
             {type.toUpperCase()}
           </td>
-          <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+          <td className="px-6 py-4 whitespace-nowrap text-start text-sm font-medium">
             <button
               onClick={() => transaction.onDelete(trx)}
               type="button"
@@ -112,21 +115,27 @@ const TransactionPage: React.FC<TransactionPageProps> = (props) => {
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
                         Image
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
-                        Category
+                        Quantity
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
                       >
-                        Stok
+                        Type
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"
+                      >
+                        Action
                       </th>
                     </tr>
                   </thead>
